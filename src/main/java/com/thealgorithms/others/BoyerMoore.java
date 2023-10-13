@@ -10,31 +10,22 @@ import java.util.*;
 
 public class BoyerMoore {
 
-    public static int findmajor(int[] a) {
-        int count = 0;
-        int cand = -1;
-        for (int i = 0; i < a.length; i++) {
-            if (count == 0) {
-                cand = a[i];
-                count = 1;
-            } else {
-                if (a[i] == cand) {
-                    count++;
-                } else {
-                    count--;
+        public static List<Integer> findmajor(int[] nums) {
+            int n = nums.length/2, count;
+            List<Integer> ans = new ArrayList<>();
+            for(int num:nums){
+                count = 0;
+                for(int i=0;i<nums.length;i++){
+                    if(nums[i]==num){
+                        count++;
+                    }
+                }
+                if(n<count && !ans.contains(num)){
+                    ans.add(num);
                 }
             }
+            return ans;
         }
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] == cand) {
-                count++;
-            }
-        }
-        if (count > (a.length / 2)) {
-            return cand;
-        }
-        return -1;
-    }
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
